@@ -1,4 +1,4 @@
 package oat.project.todolist.view;
 
-public class TodoDTO {
+public class TodoView {
 }

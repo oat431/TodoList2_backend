@@ -67,7 +67,7 @@ public class AuthenticationRestController {
         result.put("token", token);
         User user = userRepository.findById(((JwtUser) userDetails).getId()).orElse(null);
         if (user != null) {
-            result.put("user", AppMapper.INSTANCE.getAdminAuthDTO(user));
+            result.put("user", AppMapper.INSTANCE.getAuthView(user));
         }
 
         return ResponseEntity.ok(result);

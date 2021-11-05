@@ -3,14 +3,13 @@ package oat.project.todolist.config;
 import lombok.SneakyThrows;
 import oat.project.todolist.model.TodoList;
 import oat.project.todolist.model.TodoTask;
-import oat.project.todolist.repository.TaskRepository;
-import oat.project.todolist.repository.TodoRepository;
+import oat.project.todolist.database.TaskDatabase;
+import oat.project.todolist.database.TodoDatabase;
 import oat.project.todolist.security.entity.Authority;
 import oat.project.todolist.security.entity.AuthorityName;
 import oat.project.todolist.security.entity.User;
 import oat.project.todolist.security.repository.AuthorityRepository;
 import oat.project.todolist.security.repository.UserRepository;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -22,7 +21,6 @@ import javax.transaction.Transactional;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -33,10 +31,10 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     UserRepository userRepository;
 
     @Autowired
-    TodoRepository todoRepository;
+    TodoDatabase todoDatabase;
 
     @Autowired
-    TaskRepository taskRepository;
+    TaskDatabase taskDatabase;
 
     @Autowired
     AuthorityRepository authorityRepository;
@@ -99,9 +97,9 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .owedBy(mockUser)
                 .build();
 
-        todoRepository.save(todo1);
-        todoRepository.save(todo2);
-        todoRepository.save(todo3);
+        todoDatabase.save(todo1);
+        todoDatabase.save(todo2);
+        todoDatabase.save(todo3);
 
     }
 
@@ -158,7 +156,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         }
 
         for(int i=0;i<10;i++){
-            taskRepository.save(tasks[i]);
+            taskDatabase.save(tasks[i]);
         }
     }
 }

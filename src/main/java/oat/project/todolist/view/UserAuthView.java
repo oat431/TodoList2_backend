@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdminAuthDTO {
+public class UserAuthView {
     Long id;
     String username;
     List<String> authorities;

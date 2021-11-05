@@ -1,7 +1,7 @@
 package oat.project.todolist.util;
 
 import oat.project.todolist.security.entity.User;
-import oat.project.todolist.view.AdminAuthDTO;
+import oat.project.todolist.view.UserAuthView;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -13,6 +13,6 @@ public interface AppMapper {
     AppMapper INSTANCE = Mappers.getMapper(AppMapper.class);
 
     @Mapping(target = "authorities", expression = "java(user.getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
-    AdminAuthDTO getAdminAuthDTO(User user);
+    UserAuthView getAuthView(User user);
 
 }
