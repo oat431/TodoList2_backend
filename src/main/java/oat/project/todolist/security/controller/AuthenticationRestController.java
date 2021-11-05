@@ -67,7 +67,7 @@ public class AuthenticationRestController {
         result.put("token", token);
         User user = userRepository.findById(((JwtUser) userDetails).getId()).orElse(null);
         if (user != null) {
-            result.put("user", AppMapper.INSTANCE.getAdminAuthDTO(user));
+            result.put("user", AppMapper.INSTANCE.getAuthView(user));
         }
 
         return ResponseEntity.ok(result);
@@ -94,14 +94,12 @@ public class AuthenticationRestController {
         if (userRepository.findByUsername(authenticationRequest.getUsername()) == null ){
             userRepository.save(User.builder()
                     .sex(authenticationRequest.getSex())
-                    .date_of_birth(authenticationRequest.getDateOfBirth())
+                    .dateOfBirth(authenticationRequest.getDateOfBirth())
                     .firstname(authenticationRequest.getFirstname())
                     .lastname(authenticationRequest.getLastname())
-                    .hometown(authenticationRequest.getHometown())
                     .username(authenticationRequest.getUsername())
                     .password(encoder.encode(authenticationRequest.getPassword()))
                     .enabled(true)
-                    .verify(false)
                     .lastPasswordResetDate(new Date(System.currentTimeMillis()))
                     .email(authenticationRequest.getEmail())
                     .build());

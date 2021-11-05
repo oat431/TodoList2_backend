@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import oat.project.todolist.model.TodoList;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -50,11 +51,7 @@ public class User {
 
     @Column(name = "date_of_birth")
     @NotNull
-    protected Date date_of_birth;
-
-    @Column(name = "hometown", length = 100)
-    @NotNull
-    protected String hometown;
+    protected Date dateOfBirth;
 
     @Column(name = "EMAIL", length = 50)
     @NotNull
@@ -69,13 +66,12 @@ public class User {
     @NotNull
     protected Date lastPasswordResetDate;
 
-    @Column(name = "verify")
-    @NotNull
-    protected Boolean verify;
-
 	@Builder.Default
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     protected List<Authority> authorities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "owedBy")
+    List<TodoList> todoLists;
 
     @ElementCollection
     List<String> imageUrls = new ArrayList<>();
