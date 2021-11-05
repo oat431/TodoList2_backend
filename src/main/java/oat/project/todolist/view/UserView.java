@@ -5,16 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TodoView {
-    String todoName;
-    Date created;
-    Date lastUpdate;
-    List<TaskView> task;
+public class UserView {
+    Long id;
+    String firstname;
+    String lastname;
+    String email;
+    List<TodoView> todoLists;
 }

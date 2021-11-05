@@ -50,13 +50,25 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         addTask();
     }
 
-    private User mockUser;
+    private User mockUser, admin;
     private void addUser() throws ParseException {
         Authority roleUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
         Authority roleAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
+        admin = User.builder()
+                .username("pot561")
+                .password(encoder.encode("159753"))
+                .email("pot561@gmail.com")
+                .sex("male")
+                .firstname("Flowero")
+                .lastname("Oralita")
+                .enabled(true)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .dateOfBirth(Date.valueOf("2000-10-24"))
+                .build();
+
         mockUser = User.builder()
                 .username("oat431")
-                .password("Saha6462")
+                .password(encoder.encode("Saha6462"))
                 .email("oat431@gmail.com")
                 .sex("male")
                 .firstname("Sahachan")
@@ -70,7 +82,9 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         authorityRepository.save(roleAdmin);
 
         mockUser.getAuthorities().add(roleUser);
+        admin.getAuthorities().add(roleAdmin);
         userRepository.save(mockUser);
+        userRepository.save(admin);
 
     }
 
@@ -139,7 +153,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .updateAt(Timestamp.valueOf(LocalDateTime.now()))
                     .taskName(oop)
                     .status(false)
-                    .belongTo(todo1)
+                    .belongTo(todo2)
                     .build();
             index++;
         }
@@ -150,7 +164,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                     .updateAt(Timestamp.valueOf(LocalDateTime.now()))
                     .taskName(frontned)
                     .status(false)
-                    .belongTo(todo1)
+                    .belongTo(todo3)
                     .build();
             index++;
         }
