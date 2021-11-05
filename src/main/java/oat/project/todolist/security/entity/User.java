@@ -70,7 +70,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     protected List<Authority> authorities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owedBy")
+    @OneToMany(mappedBy = "owedBy",cascade = CascadeType.ALL)
     List<TodoList> todoLists;
 
     @ElementCollection
