@@ -94,14 +94,12 @@ public class AuthenticationRestController {
         if (userRepository.findByUsername(authenticationRequest.getUsername()) == null ){
             userRepository.save(User.builder()
                     .sex(authenticationRequest.getSex())
-                    .date_of_birth(authenticationRequest.getDateOfBirth())
+                    .dateOfBirth(authenticationRequest.getDateOfBirth())
                     .firstname(authenticationRequest.getFirstname())
                     .lastname(authenticationRequest.getLastname())
-                    .hometown(authenticationRequest.getHometown())
                     .username(authenticationRequest.getUsername())
                     .password(encoder.encode(authenticationRequest.getPassword()))
                     .enabled(true)
-                    .verify(false)
                     .lastPasswordResetDate(new Date(System.currentTimeMillis()))
                     .email(authenticationRequest.getEmail())
                     .build());

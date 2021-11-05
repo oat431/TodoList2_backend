@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public interface AppMapper {
     AppMapper INSTANCE = Mappers.getMapper(AppMapper.class);
 
-    @Mapping(target = "authorities", expression = "java(admin.getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
-    AdminAuthDTO getAdminAuthDTO(User admin);
+    @Mapping(target = "authorities", expression = "java(user.getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
+    AdminAuthDTO getAdminAuthDTO(User user);
 
 }
