@@ -44,12 +44,8 @@ public class TodoRepositoryImpl implements TodoRepository {
 
     @Override
     public TodoList updateTodoList(Long id,TodoList todoList) {
-        TodoList temp = todoDatabase.findById(id).orElse(null);
-        if(temp != null){
-            temp = todoList;
-            todoDatabase.save(temp);
-            return temp;
-        }
+        todoList.setLastUpdate(Timestamp.valueOf(LocalDateTime.now()));
+        todoDatabase.save(todoList);
         return todoList;
     }
 

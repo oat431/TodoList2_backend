@@ -5,9 +5,11 @@ import oat.project.todolist.service.TodoService;
 import oat.project.todolist.util.AppMapper;
 import oat.project.todolist.util.form.TodoListForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 /*
 * todo
@@ -35,7 +37,12 @@ public class TodoController {
     public ResponseEntity<?> getTodoListDetails(
             @PathVariable("id") Long id
     ){
-        return null;
+        TodoList output = todoService.getTodoListDetails(id);
+        if(output != null){
+            return ResponseEntity.ok(AppMapper.INSTANCE.getTodoView(output));
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"We not found this todo list");
+        }
     }
 
     // return update successful
@@ -44,11 +51,14 @@ public class TodoController {
             @PathVariable("id") Long id,
             @RequestBody TodoListForm todoListForm
     ){
-        return null;
+        TodoList output = todoService.getTodoListDetails(id);
+        output.setTodoName(todoListForm.getTodoName());
+        todoService.updateTodoList(id,output);
+        return ResponseEntity.ok("The todolist has been successfully updated");
     }
 
     // return delete successful
-    @DeleteMapping("todos{id}")
+    @DeleteMapping("todos/{id}")
     public ResponseEntity<?> deleteTodoList(
             @PathVariable("id") Long id
     ){

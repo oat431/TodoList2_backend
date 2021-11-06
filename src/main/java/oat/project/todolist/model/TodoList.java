@@ -24,6 +24,6 @@ public class TodoList {
     @OneToMany(mappedBy = "belongTo", cascade = CascadeType.ALL)
     List<TodoTask> task;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     User owedBy;
 }
