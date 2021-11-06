@@ -57,6 +57,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         if(temp != null){
             boolean trigger = temp.getStatus();
             temp.setStatus(!trigger);
+            temp.setUpdateAt(Timestamp.valueOf(LocalDateTime.now()));
             taskDatabase.save(temp);
         }
         return temp;

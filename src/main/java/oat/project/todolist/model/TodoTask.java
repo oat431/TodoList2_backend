@@ -20,6 +20,6 @@ public class TodoTask {
     Date created;
     Date updateAt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     TodoList belongTo;
 }

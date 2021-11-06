@@ -1,11 +1,9 @@
 package oat.project.todolist.util;
 
 import oat.project.todolist.model.TodoList;
+import oat.project.todolist.model.TodoTask;
 import oat.project.todolist.security.entity.User;
-import oat.project.todolist.view.AdminView;
-import oat.project.todolist.view.TodoView;
-import oat.project.todolist.view.UserAuthView;
-import oat.project.todolist.view.UserView;
+import oat.project.todolist.view.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -25,6 +23,9 @@ public interface AppMapper {
 
     TodoView getTodoView(TodoList todoList);
     List<TodoView> getTodoView(List<TodoList> todoLists);
+
+    TaskView getTaskView(TodoTask task);
+    List<TodoTask> getTaskView(List<TodoTask> tasks);
 
     @Mapping(target = "authorities", expression = "java(user.getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
     UserAuthView getAuthView(User user);
