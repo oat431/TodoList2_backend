@@ -76,6 +76,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/todos/{id}").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE,"/todos/{id}").hasRole("USER")
 
+                .antMatchers(HttpMethod.POST,"/task").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/task/{id}").hasRole("USER")
+                .antMatchers(HttpMethod.PUT,"/task/{id}").hasRole("USER")
+                .antMatchers(HttpMethod.PUT,"/task/status/{id}").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/task/{id}").hasRole("USER")
+
                 .antMatchers(HttpMethod.GET,"/users").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
