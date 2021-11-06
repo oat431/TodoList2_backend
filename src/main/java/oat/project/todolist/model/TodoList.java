@@ -1,6 +1,8 @@
 package oat.project.todolist.model;
 
 import lombok.*;
+import oat.project.todolist.security.entity.User;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +21,9 @@ public class TodoList {
     Date created;
     Date lastUpdate; 
 
-    @OneToMany(mappedBy = "belongTo")
+    @OneToMany(mappedBy = "belongTo", cascade = CascadeType.ALL)
     List<TodoTask> task;
+
+    @ManyToOne
+    User owedBy;
 }

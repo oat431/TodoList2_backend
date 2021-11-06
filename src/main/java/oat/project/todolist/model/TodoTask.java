@@ -18,8 +18,8 @@ public class TodoTask {
     String taskName;
     boolean status;
     Date created;
-    Date updateat;
+    Date updateAt;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     TodoList belongTo;
 }
