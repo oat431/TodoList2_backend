@@ -21,7 +21,7 @@ public class TodoList {
     Date created;
     Date lastUpdate; 
 
-    @OneToMany(mappedBy = "belongTo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "belongTo")
     List<TodoTask> task;
 
     @ManyToOne

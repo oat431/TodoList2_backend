@@ -16,10 +16,10 @@ public class TodoTask {
     Long taskId;
 
     String taskName;
-    boolean status;
+    Boolean status;
     Date created;
     Date updateAt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     TodoList belongTo;
 }
